@@ -1,4 +1,5 @@
-from psychopy import visual, core, event
+from psychopy import visual, event
+
 
 def instructions(window, language):
     win = window

@@ -1,17 +1,22 @@
-from psychopy import visual, core, event
+from psychopy import visual, core
 from Select_Stories import select_stories
 from Select_Language import select_language
 from Instructions import instructions
 from Ratings import ratings
 from Ask_Continue import ask_continue
 from datetime import datetime
-import pandas as pd
+import os
+
 
 def main():
-    
+
+    result_dir = "C:\\StoryRatings"
+    if not os.path.exists(result_dir):
+        os.makedirs(result_dir)
+
     # Create unique file name for this session
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    save_file = f"story_focus_ratings_{timestamp}.csv"
+    save_file = os.path.join(result_dir, f"story_focus_ratings_{timestamp}.csv")
     
     # Pop up file explorer to select stories file
     stories = select_stories()
@@ -19,7 +24,7 @@ def main():
     # Create PsychoPy Window
     win = visual.Window(
         fullscr=False,
-        color='black',
+        color='darkgrey',
         units='height'
     )
 
@@ -35,9 +40,9 @@ def main():
         for category in list(stories.keys()):
             if stories[category]:
                 story_text = stories[category].pop(0)
-                batch.append({'category':category, 'story':story_text})
+                batch.append({'category': category, 'story': story_text})
                 
-        if not batch: # No more stories in any category
+        if not batch:  # No more stories in any category
             break
         
         # Show Rating Screen

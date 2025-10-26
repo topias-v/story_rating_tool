@@ -1,4 +1,5 @@
-from psychopy import visual, event
+from psychopy import visual, event, core
+
 
 def ask_continue(window, language):
     
@@ -29,4 +30,3 @@ def ask_continue(window, language):
         if 'escape' in event.getKeys():
             win.close()
             core.quit()
-        

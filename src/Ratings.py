@@ -2,10 +2,11 @@ from psychopy import visual, core, event
 import pandas as pd
 import os
 
+
 def ratings(window, language, stories, file_path):
     win = window
     lang = language
-    
+
     # Visual Elements
     box = visual.Rect(win=win, width=1, height=0.3, fillColor='white', lineColor='white', pos=(0, 0.25))
     story_text = visual.TextStim(win=win, text='', pos=(0, 0.25), height=0.03, wrapWidth=0.8, color='black')
@@ -19,9 +20,9 @@ def ratings(window, language, stories, file_path):
         size=(0.8, 0.05),
         style=['rating'],
         labelHeight=0,  # hide built-in labels
-        color='gray',
+        color='black',
         fillColor='white',
-        borderColor='gray'
+        borderColor='black'
     )
 
     slider2 = visual.Slider(
@@ -32,27 +33,31 @@ def ratings(window, language, stories, file_path):
         size=(0.8, 0.05),
         style=['rating'],
         labelHeight=0,
-        color='gray',
+        color='black',
         fillColor='white',
-        borderColor='gray'
+        borderColor='black'
     )
 
     # Slider Labels
-    label_people = visual.TextStim(win=win, text=['People', 'Ihmiset'][lang], pos=(-0.96, -0.05), height=0.03, color='gray', anchorHoriz='left')
-    label_scene = visual.TextStim(win=win, text=['Scene', 'Ympäristö'][lang], pos=([0.96, 0.98][lang], -0.05), height=0.03, color='gray', anchorHoriz='right')
+    label_people = visual.TextStim(win=win, text=['People', 'Ihmiset'][lang], pos=(-0.96, -0.05), height=0.03,
+                                   color='black', anchorHoriz='left')
+    label_scene = visual.TextStim(win=win, text=['Scene', 'Ympäristö'][lang], pos=([0.96, 0.98][lang], -0.05),
+                                  height=0.03, color='black', anchorHoriz='right')
 
-    label_self = visual.TextStim(win=win, text=['Self', 'Itse'][lang], pos=(-0.94, -0.15), height=0.03, color='gray', anchorHoriz='left')
-    label_others = visual.TextStim(win=win, text=['Others', 'Muut'][lang], pos=([0.96, 0.95][lang], -0.15), height=0.03, color='gray', anchorHoriz='right')
+    label_self = visual.TextStim(win=win, text=['Self', 'Itse'][lang], pos=(-0.94, -0.15), height=0.03, color='black',
+                                 anchorHoriz='left')
+    label_others = visual.TextStim(win=win, text=['Others', 'Muut'][lang], pos=([0.96, 0.95][lang], -0.15), height=0.03,
+                                   color='black', anchorHoriz='right')
 
-    instr_txt = ["Use the sliders to rate the story. Then press ENTER.", 
-        "Käytä liukusäätimiä arvioidaksesi tarinan, sitten paina ENTER"]
-        
+    instr_txt = ["Use the sliders to rate the story. Then press ENTER.",
+                 "Käytä liukusäätimiä arvioidaksesi tarinan, sitten paina ENTER"]
+
     instruction = visual.TextStim(
         win=win,
         text=instr_txt[lang],
         pos=(0, -0.3),
         height=0.03,
-        color='gray'
+        color='black'
     )
 
     # Collect ratings
@@ -75,11 +80,11 @@ def ratings(window, language, stories, file_path):
             win.flip()
 
             keys = event.getKeys()
-            
+
             if 'escape' in keys:
                 win.close()
                 core.quit()
-                
+
             if 'return' in keys and slider1.getRating() is not None and slider2.getRating() is not None:
                 break
 
