@@ -9,7 +9,7 @@ def ask_continue(window, language):
     yes = ["Yes", "Kyllä"]
     no = ["No", "En"]
     
-    prompt = visual.TextStim(win, text=prompt_txt[language], pos=(0, 0.3), height=0.05, color='white')
+    prompt = visual.TextStim(win, text=prompt_txt[language], pos=(0, 0.3), height=0.05, color='black')
     yes_box = visual.Rect(win, width=0.4, height=0.15, pos=(-0.3, 0), fillColor='white')
     yes_label = visual.TextStim(win, text=yes[language], pos=(-0.3, 0), color='black', height=0.04)
     no_box = visual.Rect(win, width=0.4, height=0.15, pos=(0.3, 0), fillColor='white')

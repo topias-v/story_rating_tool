@@ -1,6 +1,7 @@
 from psychopy import visual, core, event
 import pandas as pd
 import os
+import sys
 
 
 def ratings(window, language, stories, file_path):
@@ -84,6 +85,7 @@ def ratings(window, language, stories, file_path):
             if 'escape' in keys:
                 win.close()
                 core.quit()
+                sys.exit(0)
 
             if 'return' in keys and slider1.getRating() is not None and slider2.getRating() is not None:
                 break

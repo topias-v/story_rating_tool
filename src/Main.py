@@ -1,4 +1,4 @@
-from psychopy import visual, core
+from psychopy import visual, core, logging
 from Select_Stories import select_stories
 from Select_Language import select_language
 from Instructions import instructions
@@ -6,6 +6,22 @@ from Ratings import ratings
 from Ask_Continue import ask_continue
 from datetime import datetime
 import os
+import sys
+
+if getattr(sys, 'frozen', False):
+    def safe_core_quit():
+        """Prevent AttributeError when PsychoPy tries to flush logs on exit."""
+        try:
+            logging.flush()
+        except Exception:
+            pass
+        # Disable PsychoPy’s auto-log flushing completely
+        try:
+            logging._handlers = []
+            logging.logFile = None
+        except Exception:
+            pass
+    core.quit = safe_core_quit
 
 
 def main():
@@ -23,7 +39,7 @@ def main():
 
     # Create PsychoPy Window
     win = visual.Window(
-        fullscr=False,
+        fullscr=True,
         color='darkgrey',
         units='height'
     )
@@ -61,7 +77,7 @@ def main():
         text=thanks[lang],
         pos=(0, 0),
         height=0.05,
-        color='white'
+        color='black'
     )
     thank_you.draw()
     win.flip()

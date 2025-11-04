@@ -40,7 +40,7 @@ def instructions(window, language):
         text=instruction_text[language],
         wrapWidth=1.2,
         height=0.03,
-        color='white',
+        color='black',
         pos=(0, 0)
     )
 

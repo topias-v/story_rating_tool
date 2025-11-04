@@ -1,7 +1,9 @@
 import tkinter as tk
 from tkinter import filedialog
+from psychopy import core
 import pandas as pd
 import random
+import sys
 
 
 def select_stories():
@@ -16,7 +18,15 @@ def select_stories():
 
     if not file_path:
         print("No file selected. Exiting...")
-        exit()
+        try:
+            root.destroy()
+        except Exception:
+            pass
+        try:
+            core.quit()
+        except Exception:
+            pass
+        sys.exit(0)
     
     # Load semicolon-separated CSV
     df = pd.read_csv(file_path, sep=';')

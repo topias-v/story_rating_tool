@@ -11,7 +11,7 @@ def select_language(window):
         text="Choose Language / Valitse kieli:",
         pos=(0, 0.3),
         height=0.05,
-        color='white'
+        color='black'
     )
 
     # English button
