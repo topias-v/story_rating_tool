@@ -10,6 +10,7 @@ def select_stories():
     # Use tkinter to open file dialog
     root = tk.Tk()
     root.withdraw()
+    root.attributes('-topmost', True)
 
     file_path = filedialog.askopenfilename(
         title="Select the story CSV file",
@@ -36,7 +37,6 @@ def select_stories():
     for col in df.columns:
         stories = df[col].dropna().tolist()
         if stories:
-            random.shuffle(stories)
             story_dict[col] = stories
     
     return story_dict
